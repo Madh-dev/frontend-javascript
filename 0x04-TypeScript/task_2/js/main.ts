@@ -38,12 +38,6 @@ return 'Getting to work';
 }
 
 
-// function createEmployee(salary: number | string): Director | Teacher {
-// if (typeof salary === 'number' && salary >= 500) {
-// return new Director();
-// }
-// return new Teacher();
-// }
 
 function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number" && salary < 500) {
@@ -62,7 +56,7 @@ console.log(createEmployee('$500'));
 type Employee = Director | Teacher;
 
 
-function isDirector(employee: Employee): employee is Director {
+export function isDirector(employee: Employee): employee is Director {
 // method check - safe for these classes
 return (employee as Director).workDirectorTasks !== undefined;
 }
@@ -72,7 +66,7 @@ function executeWork(employee: Employee): string {
 if (isDirector(employee)) {
 return employee.workDirectorTasks();
 }
-return (employee as Teacher).workTeacherTasks();
+return employee.workTeacherTasks();
 }
 
 
